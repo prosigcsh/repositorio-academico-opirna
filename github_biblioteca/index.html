@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Biblioteca Académica</title>
+  <link rel="icon" href="data:,📚" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <header class="site-header">
+      <div class="logo-slot logo-left">
+        <a href="https://ciesas.edu.mx/" target="_blank" rel="noopener">
+          <img src="assets/logo_ciesas.png" alt="Logo CIESAS" />
+        </a>
+      </div>
+
+      <div class="hero-copy">
+        <h1>Biblioteca Académica</h1>
+        <p>Consulta, explora y accede a textos científicos especializados</p>
+      </div>
+
+      <div class="logo-slot logo-right">
+        <a href="https://prosigcsh.ciesas.edu.mx/" target="_blank" rel="noopener">
+          <img src="assets/Logotipo_PROSIG-CSH.png" alt="Logotipo ProSIG-CSH" />
+        </a>
+        <a class="return-button" href="https://opirna.ciesas.edu.mx/s/observatorio-de-pueblos-indigenas-recursos-naturales-y-medio-ambiente/page/welcome" target="_blank" rel="noopener">REGRESAR AL OPIRNA</a>
+      </div>
+    </header>
+
+    <section class="search-card" aria-label="Buscador y filtros">
+      <label class="sr-only" for="searchInput">Buscar</label>
+      <input id="searchInput" type="search" placeholder="🔎 Buscar por título, autor, tema o territorio..." autocomplete="off" />
+
+      <div class="filters-grid">
+        <label>Año
+          <select id="yearFilter"></select>
+        </label>
+        <label>Autor
+          <select id="authorFilter"></select>
+        </label>
+        <label>Tipo
+          <select id="typeFilter"></select>
+        </label>
+      </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Estadísticas generales">
+      <article class="stat-card"><span>📚</span><strong id="statDocs">0 / 0</strong><small>Documentos</small></article>
+      <article class="stat-card"><span>👤</span><strong id="statAuthors">0 / 0</strong><small>Autores</small></article>
+      <article class="stat-card"><span>🌎</span><strong id="statPlaces">0 / 0</strong><small>Lugares mencionados</small></article>
+      <article class="stat-card"><span>📄</span><strong id="statTypes">0 / 0</strong><small>Colecciones temáticas</small></article>
+    </section>
+
+    <section class="map-section">
+      <div class="section-heading">
+        <h2>Explora la producción académica por país</h2>
+        <p>Pasa el cursor sobre un país para conocer cuántos documentos del repositorio hacen referencia a ese territorio.</p>
+      </div>
+
+      <div class="map-layout">
+        <div id="map" role="img" aria-label="Mapa de producción académica por país"></div>
+        <aside id="countryPanel" class="country-panel">
+          <h2>Exploración territorial</h2>
+          <p>Selecciona un país en el mapa para explorar su producción académica.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="results-section">
+      <div id="resultStatus" class="result-status"></div>
+      <div class="table-wrap">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>Abrir</th>
+              <th>Título</th>
+              <th>Autores</th>
+              <th>Año</th>
+              <th>Fuente</th>
+              <th>Tipo documento</th>
+              <th>Categoría</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="frequent-section">
+      <h2>📊 Consultas más frecuentes</h2>
+      <ol id="topSearches"></ol>
+      <p id="noTopSearches" class="muted">Todavía no hay consultas registradas.</p>
+    </section>
+
+    <footer class="site-footer">
+      <p>
+        <a href="https://ciesas.edu.mx/" target="_blank" rel="noopener">Centro de Investigaciones y Estudios Superiores en Antropología Social (CIESAS)</a><br><br>
+        <a href="https://prosigcsh.ciesas.edu.mx/" target="_blank" rel="noopener">Programa de Sistemas de Información Geográfica para Ciencias Sociales y Humanidades (ProSIG-CSH)</a><br><br>
+        © 2026 Repositorio Académico Institucional
+      </p>
+    </footer>
+  </main>
+
+  <dialog id="recordModal" class="record-modal">
+    <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
+    <div id="modalContent"></div>
+  </dialog>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
